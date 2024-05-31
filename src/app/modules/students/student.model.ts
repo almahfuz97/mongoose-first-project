@@ -1,4 +1,4 @@
-import { Schema, model, connect } from 'mongoose'
+import { Schema, model } from 'mongoose'
 import { Guardian, Student, StudentName } from './students.interface'
 
 const studentNameSchema = new Schema<StudentName>({
@@ -74,6 +74,8 @@ const studentsSchema = new Schema<Student>({
     guardian: guardianSchema,
     isActive: { type: String }
 
+}, {
+    collection: 'students' // Explicitly specify collection name if needed
 })
 
 export const StudentModel = model<Student>("Student", studentsSchema)
