@@ -17,9 +17,12 @@ app.use('/api/v1/users', UserRoutes);
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
 });
-// globalErrors
-// app.use(globalErrorHandlers)
+
+
+// globalError handleer
+app.use(globalErrorHandlers);
 
 // not found
 app.use(notFound)
+
 export default app;

@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { UserServices } from "./user.service";
 
-const createStudent = async (req: Request, res: Response) => {
+const createStudent = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const studentData = req.body;
         const result = await UserServices.createStudentToDB(studentData);
@@ -13,11 +13,7 @@ const createStudent = async (req: Request, res: Response) => {
         })
 
     } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: "Internal server error",
-            data: error
-        })
+        next(error);
     }
 
 }
