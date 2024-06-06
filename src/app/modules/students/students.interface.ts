@@ -1,6 +1,8 @@
 // import { Schema, model, connect } from 'mongoose';
 
-export type Guardian = {
+import { ObjectId } from "mongodb";
+
+export interface Guardian {
   fathersName: string;
   fathersOccupation: string;
   fathersContact: string;
@@ -14,18 +16,21 @@ export type StudentName = {
   lastName: string;
 };
 
-export type Student = {
+export interface IStudent {
   id: string;
+  password: string;
+  user: ObjectId;
   name: StudentName;
   gender: 'male' | 'female';
   dateOfBirth: string;
   email: string;
   contactNo: string;
   emergencyContact: string;
-  bloodGroup: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-';
-  avatar?: string;
+  // bloodGroup: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-';
+  // avatar?: string;
   presentAddress: string;
   parmanentAddress: string;
   guardian: Guardian;
-  isActive: 'active' | 'inactive';
+  academicDept: string;
+  profileImg: string
 };
