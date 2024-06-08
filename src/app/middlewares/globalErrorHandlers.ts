@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import httpStatus from "http-status";
 
 // const globalErrorHandlers = ((err: any, res: Response, req: Request, next: NextFunction) => {
 //     const statusCode = 500;
@@ -13,7 +14,7 @@ import { NextFunction, Request, Response } from "express";
 // export default globalErrorHandlers;
 
 const globalErrorHandlers = (err: any, req: Request, res: Response, next: NextFunction) => {
-    const statusCode = 500;
+    const statusCode = httpStatus.NOT_FOUND;
     const message = err.message || 'Something went wrong!';
 
     return res.status(statusCode).json({
