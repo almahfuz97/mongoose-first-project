@@ -1,6 +1,6 @@
 // import { Schema, model, connect } from 'mongoose';
 
-import { ObjectId } from "mongodb";
+import { ObjectId } from 'mongodb';
 
 export interface Guardian {
   fathersName: string;
@@ -9,7 +9,7 @@ export interface Guardian {
   mothersName: string;
   mothersOccupation: string;
   mothersContact: string;
-};
+}
 export type StudentName = {
   firstName: string;
   middleName: string;
@@ -32,5 +32,5 @@ export interface IStudent {
   parmanentAddress: string;
   guardian: Guardian;
   academicDept: string;
-  profileImg: string
-};
+  profileImg: string;
+}

@@ -50,53 +50,49 @@ const guardianSchema = new Schema<Guardian>({
 });
 
 // main schema
-const studentsSchema = new Schema<IStudent>(
-  {
-    id: { type: String, required: true, unique: true },
-    password: {
-      type: String
-    },
-    user:
-    {
-      type: Schema.Types.ObjectId,
-      required: true,
-      unique: true,
-      ref: 'User'
-    },
-    name: { type: studentNameSchema, required: true },
-    gender: {
-      type: String,
-      enum: ['male', 'female']
-    },
-    dateOfBirth: { type: String },
-    email: {
-      type: String,
-      required: true,
-    },
-
-    contactNo: {
-      type: String,
-      required: true,
-    },
-    emergencyContact: {
-      type: String,
-      required: true,
-    },
-    presentAddress: {
-      type: String,
-      required: true,
-    },
-    parmanentAddress: {
-      type: String,
-      required: true,
-    },
-    profileImg: {
-      type: String,
-      required: true,
-    },
-    guardian: { type: guardianSchema, required: true },
-
+const studentsSchema = new Schema<IStudent>({
+  id: { type: String, required: true, unique: true },
+  password: {
+    type: String,
   },
-);
+  user: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    unique: true,
+    ref: 'User',
+  },
+  name: { type: studentNameSchema, required: true },
+  gender: {
+    type: String,
+    enum: ['male', 'female'],
+  },
+  dateOfBirth: { type: String },
+  email: {
+    type: String,
+    required: true,
+  },
+
+  contactNo: {
+    type: String,
+    required: true,
+  },
+  emergencyContact: {
+    type: String,
+    required: true,
+  },
+  presentAddress: {
+    type: String,
+    required: true,
+  },
+  parmanentAddress: {
+    type: String,
+    required: true,
+  },
+  profileImg: {
+    type: String,
+    required: true,
+  },
+  guardian: { type: guardianSchema, required: true },
+});
 
 export const StudentModel = model<IStudent>('Student', studentsSchema);

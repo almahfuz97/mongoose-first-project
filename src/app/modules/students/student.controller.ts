@@ -1,7 +1,6 @@
-import { NextFunction, Request, RequestHandler, Response } from 'express';
+// import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { StudentServices } from './student.service';
 import catchAsync from '../../utils/catchAsync';
-
 
 const getAllStudents = catchAsync(async (req, res) => {
   const result = await StudentServices.getAllStudentsFromDB();
@@ -29,7 +28,6 @@ const getSingleStudent = catchAsync(async (req, res) => {
       data: result,
     });
   }
-
 });
 
 export const StudentControllers = {

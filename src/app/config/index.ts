@@ -7,5 +7,5 @@ export default {
   port: process.env.PORT,
   database_url: process.env.DATABASE_URL,
   default_pass: process.env.Default_Password,
-  bcypt_salt_rounds: process.env.BCRYPT_SALT_ROUNDS
+  bcypt_salt_rounds: process.env.BCRYPT_SALT_ROUNDS,
 };

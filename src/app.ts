@@ -1,7 +1,6 @@
 // const express = require('express')
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
-import { UserRoutes } from './app/modules/users/user.routes';
 import notFound from './app/middlewares/notFound';
 import globalErrorHandlers from './app/middlewares/globalErrorHandlers';
 import router from './app/routes';
@@ -19,11 +18,10 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
 });
 
-
 // globalError handleer
 app.use(globalErrorHandlers);
 
 // not found
-app.use(notFound)
+app.use(notFound);
 
 export default app;
