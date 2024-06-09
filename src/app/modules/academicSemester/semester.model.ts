@@ -1,11 +1,3 @@
-// export interface IAcademicSemester {
-//     name: 'Autumn' | 'Summer' | 'Fall';
-//     code: '01' | '02' | '03';
-//     year: Date;
-//     startMonth: MonthName;
-//     endMonth: MonthName
-// }
-
 import { Schema, model } from 'mongoose';
 import { IAcademicSemester, months } from './semester.interface';
 
@@ -37,12 +29,14 @@ const academicSemesterSchema = new Schema<IAcademicSemester>({
 academicSemesterSchema.pre('save', async function (next) {
   const isSemesterNameExists = await AcademicSemesterModel.findOne({
     name: this.name,
-    code: this.code,
     year: this.year,
   });
-  if (isSemesterNameExists) throw new Error('Same semester exits!');
-  else next();
+  if (isSemesterNameExists) {
+    throw new Error('Same semester exits!');
+  }
+  next();
 });
+
 export const AcademicSemesterModel = model<IAcademicSemester>(
   'AcademicSemester',
   academicSemesterSchema,

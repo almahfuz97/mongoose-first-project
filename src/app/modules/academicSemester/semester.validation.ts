@@ -9,6 +9,7 @@ const zodAcademicSemesterSchema = z.object({
     startMonth: z.enum(months as [string, ...string[]]),
     endMonth: z.enum(months as [string, ...string[]]),
   }),
+
   // gender: z.enum(['male', 'female']),
   // dateOfBirth: z.date(),
   // email: z.string().email(),

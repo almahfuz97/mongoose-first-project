@@ -14,11 +14,12 @@ const getAllStudents = catchAsync(async (req, res) => {
 
 const getSingleStudent = catchAsync(async (req, res) => {
   const { studentId } = req.params;
-  if (!isValidHexadecimal(studentId)) return res.status(400).json({
-    success: false,
-    message: 'Invalid id format',
-    data: []
-  })
+  if (!isValidHexadecimal(studentId))
+    return res.status(400).json({
+      success: false,
+      message: 'Invalid id format',
+      data: [],
+    });
   const result = await StudentServices.getSingleStudentFromDB(studentId);
 
   if (result) {
@@ -35,8 +36,6 @@ const getSingleStudent = catchAsync(async (req, res) => {
     });
   }
 });
-
-
 
 export const StudentControllers = {
   getAllStudents,
