@@ -1,5 +1,6 @@
 // import { NextFunction, Request, RequestHandler, Response } from 'express';
 import catchAsync from '../../utils/catchAsync';
+import { isValidHexadecimal } from '../../utils/isValidHexadecimal';
 import { AcademicSemesterServices } from './semester.service';
 
 const createAcademicSemester = catchAsync(async (req, res) => {
@@ -22,28 +23,37 @@ const getAllAcademicSemesters = catchAsync(async (req, res) => {
     })
 })
 
-// const getSingleStudent = catchAsync(async (req, res) => {
-//   const { studentId } = req.params;
-//   const result = await StudentServices.getSingleStudentFromDB(studentId);
+const getSingleSemester = catchAsync(async (req, res) => {
+    const { id } = req.params;
 
-//   if (result) {
-//     res.status(200).json({
-//       success: true,
-//       message: 'Students retrieved succesfully',
-//       data: result,
-//     });
-//   } else {
-//     res.status(404).json({
-//       success: false,
-//       message: 'No student found',
-//       data: result,
-//     });
-//   }
+    if (!isValidHexadecimal(id)) {
+        return res.status(400).json({
+            success: false,
+            message: 'Invalid id format',
+            data: []
+        })
+    }
+    const result = await AcademicSemesterServices.getSingleSemesterWithIDFromDB(id);
 
-// });
+    if (result) {
+        res.status(200).json({
+            success: true,
+            message: 'Students retrieved succesfully',
+            data: result,
+        });
+    } else {
+        res.status(404).json({
+            success: false,
+            message: 'No student found',
+            data: result,
+        });
+    }
+
+});
 
 export const AcademicSemesterControllers = {
     createAcademicSemester,
-    getAllAcademicSemesters
+    getAllAcademicSemesters,
+    getSingleSemester
 
 };

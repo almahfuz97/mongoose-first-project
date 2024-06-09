@@ -1,6 +1,7 @@
 // import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { StudentServices } from './student.service';
 import catchAsync from '../../utils/catchAsync';
+import { isValidHexadecimal } from '../../utils/isValidHexadecimal';
 
 const getAllStudents = catchAsync(async (req, res) => {
   const result = await StudentServices.getAllStudentsFromDB();
@@ -13,6 +14,11 @@ const getAllStudents = catchAsync(async (req, res) => {
 
 const getSingleStudent = catchAsync(async (req, res) => {
   const { studentId } = req.params;
+  if (!isValidHexadecimal(studentId)) return res.status(400).json({
+    success: false,
+    message: 'Invalid id format',
+    data: []
+  })
   const result = await StudentServices.getSingleStudentFromDB(studentId);
 
   if (result) {
@@ -29,6 +35,8 @@ const getSingleStudent = catchAsync(async (req, res) => {
     });
   }
 });
+
+
 
 export const StudentControllers = {
   getAllStudents,

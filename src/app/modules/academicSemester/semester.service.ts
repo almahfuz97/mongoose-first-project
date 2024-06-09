@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import {
     IAcademicSemester,
     IAcademicSemesterNameAndCode,
@@ -24,7 +25,13 @@ const getAllAcademicSemestersFromDB = async () => {
     return result;
 }
 
+const getSingleSemesterWithIDFromDB = async (id: string) => {
+    const result = await AcademicSemesterModel.findOne({ _id: id });
+    return result;
+}
+
 export const AcademicSemesterServices = {
     createAcademicSemesterIntoDB,
-    getAllAcademicSemestersFromDB
+    getAllAcademicSemestersFromDB,
+    getSingleSemesterWithIDFromDB
 };
